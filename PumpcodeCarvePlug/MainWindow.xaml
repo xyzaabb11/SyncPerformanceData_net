@@ -1,0 +1,55 @@
+﻿<Window x:Class="PumpcodeCarvePlug.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="油量打码助手" Height="350" Width="525">
+    <Window.Resources>
+        <RoutedUICommand x:Key="FocusInputTextBoxUiCommand" Text="Focus Input TextBox UiCommand"/>
+        <RoutedUICommand x:Key="SearchRoutedUiCommand" Text="Search RoutedUiCommand" />
+        <RoutedUICommand x:Key="UpSelectRoutedUiCommand" Text="Up Select RoutedUiCommand" />
+        <RoutedUICommand x:Key="DownSelectRoutedUiCommand" Text="Down Select RoutedUiCommand" />
+        <RoutedUICommand x:Key="MarkRoutedUiCommand" Text="Mark RoutedUiCommand" />
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="F1" Command="{StaticResource FocusInputTextBoxUiCommand}"/>
+        <KeyBinding Key="Enter" Command="{StaticResource SearchRoutedUiCommand}" />
+        <KeyBinding Key="F3" Command="{StaticResource UpSelectRoutedUiCommand}"/>
+        <KeyBinding Key="F4" Command="{StaticResource DownSelectRoutedUiCommand}" />
+        <KeyBinding Key="F5" Command="{StaticResource MarkRoutedUiCommand}" />
+    </Window.InputBindings>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource FocusInputTextBoxUiCommand}" Executed="FocusInputBox_OnExecuted"/>
+        <CommandBinding Command="{StaticResource SearchRoutedUiCommand}" Executed="PumpsearchButton_OnClick"/>
+        <CommandBinding Command="{StaticResource UpSelectRoutedUiCommand}" Executed="UpSelect_OnExecuted" />
+        <CommandBinding Command="{StaticResource DownSelectRoutedUiCommand}" Executed="DownSelect_OnExecuted" />
+        <CommandBinding Command="{StaticResource MarkRoutedUiCommand}" Executed="MarkButton_OnClick" />
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".2*" />
+            <ColumnDefinition Width=".5*" />
+            <ColumnDefinition Width=".3*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="总成编号:"  Margin="3" FontSize="25" />
+        <TextBox Grid.Row="0" Grid.Column="1" Name="pumpcode"  Margin="3" FontSize="20" />
+        <Button Name="PumpsearchButton" Grid.Row="0" Grid.Column="2" Content="查询" Margin="3" FontSize="16" Click="PumpsearchButton_OnClick"/>
+        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Name="PumpunitListView" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="缸号" Width="50" DisplayMemberBinding="{Binding TankNo}" />
+                    <GridViewColumn Header="泵单元号" Width="150" DisplayMemberBinding="{Binding PumpUnit}" />
+                    <GridViewColumn Header="修正码" Width="150" DisplayMemberBinding="{Binding PumpCode}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Grid.Row="1" Grid.Column="2" Content="标记" Name="MarkButton" Margin="10" FontSize="30" Click="MarkButton_OnClick"/>
+        
+        <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" TextWrapping="Wrap" IsEnabled="False">
+            快捷键：F1－总成编号输入框，Enter－查询按钮，F3－向上选择油量修正码，F4－向下选择油量修正码，F5－标记按钮
+        </TextBox>
+    </Grid>
+</Window>

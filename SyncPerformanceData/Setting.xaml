@@ -1,0 +1,15 @@
+﻿<Window x:Class="SyncPerformanceData.Setting"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="设置" Height="164" Width="478" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="19,10,0,0" TextWrapping="Wrap" Text="本地数据库路径:" VerticalAlignment="Top"/>
+        <TextBox  x:Name="localdb" HorizontalAlignment="Left" Height="23" Margin="121,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="264"/>
+        <Button Content="选择" HorizontalAlignment="Left" Margin="395,10,0,0" VerticalAlignment="Top" Width="75" Click="ChooseLocaldbpath_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="19,46,0,0" TextWrapping="Wrap" Text="远程服务器IP:" VerticalAlignment="Top"/>
+        <TextBox x:Name="remoteip" HorizontalAlignment="Left" Height="23" Margin="121,46,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="166"/>
+        <Button Content="确定" HorizontalAlignment="Left" Margin="121,101,0,0" VerticalAlignment="Top" Width="75" Click="Comfirm_OnClick"/>
+        <Button Content="取消" HorizontalAlignment="Left" Margin="277,101,0,0" VerticalAlignment="Top" Width="75" Click="Cancel_OnClick"/>
+
+    </Grid>
+</Window>
